@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Hello World</title>
+        <script src="Jquery/jquery-3.2.1.min.js"></script>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-grid.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.css">
+        <script src="bootstrap/js/bootstrap.bundle.js"></script>
+        <link rel="stylesheet" href="css/Login.css">
+        <script src="js/Login.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row" id="loginWindow">
+                <div class="row">
+                    <input id="email" name="email" placeholder="email">
+                    <input id="password" name="password" placeholder="password">
+                </div>
+                <div class="btn btn-block btn-login" id="login">LOGIN</div>
+                <div class="btn btn-block btn-dark" id="registro">REGISTRO</div>
+
+                <div class="alert alert-success" role="alert" id="registroAlert">
+                    Registro completo
+                </div>
+            </div>
+            <div class="row" id="fotos">
+                <div class="row">
+                    <div class="col">
+                        <input>
+                    </div>
+                    <div class="col">
+                        <div class="btn btn-block btn-danger" id="foto">FOTO</div>
+                    </div>
+                    <div class="col">
+                        <div class="btn btn-block btn-login">MIS FOTOS</div>
+                    </div>
+                </div>
+                <img class="row" id="myImg" src="">
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

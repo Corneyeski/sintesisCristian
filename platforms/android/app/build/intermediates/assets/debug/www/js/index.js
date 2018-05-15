@@ -3,8 +3,10 @@ var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 
-        $("#fotos").hide();
+        $("#afterLogin").hide();
         $("#registroAlert").hide();
+        $("#fotos").hide();
+        $("#misFotos").hide();
 
         $("#login").click(function(){
             register("login");
@@ -49,7 +51,7 @@ function register(whatToDo) {
                     if (respJSON == "true"){
                         //window.location = "main.html"
                         $("#loginWindow").hide();
-                        $("#fotos").show();
+                        $("#afterLogin").show();
                     }
                 }else if(respJSON == "false"){
                     $("#registroAlert").show();
@@ -61,13 +63,43 @@ function register(whatToDo) {
 function evtTakePicture() {
     navigator.camera.getPicture(takePictureSuccess, onFail, {quality: 100
         , saveToPhotoAlbum: true
-        ,destinationType: navigator.camera.DestinationType.DATA_URL
+        ,destinationType: navigator.camera.DestinationType.FILE_URI
         , sourceType: navigator.camera.PictureSourceType.CAMERA});
 }
 function takePictureSuccess(imageData) {
-    $("#myImg").attr("src", "data:image/jpeg;base64," + imageData);
+    $("#myImg").attr("src", imageData);
+    $("#fotos").show();
+
+    //TODO CODIGO PARA SUBIRLA FUNCIONA
+    /*var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=imageData.substr(imageData.lastIndexOf('/')+1);
+    options.mimeType="image/jpeg";
+
+    var params = new Object();
+    params.value1 = "test";
+    params.value2 = "param";
+
+    options.params = params;
+    options.chunkedMode = false;
+
+    var ft = new FileTransfer();
+    ft.upload(imageData, "http://alansintesis.000webhostapp.com/foto.php", win, fail, options);*/
 }
 
+function win(r) {
+    console.log("alta correcta..")
+    /*console.log("Code = " + r.responseCode.toString()+"\n");
+    console.log("Response = " + r.response.toString()+"\n");
+    console.log("Sent = " + r.bytesSent.toString()+"\n");
+    alert("Code Slayer!!!");*/
+}
+
+function fail(error) {
+    alert("An error has occurred: Code = " + error.code);
+}
+
+/*
 function evtGetPicture() {
     navigator.camera.getPicture(getPictureSuccess, onFail, {
         destinationType: navigator.camera.DestinationType.FILE_URI
@@ -76,7 +108,7 @@ function evtGetPicture() {
 }
 function getPictureSuccess(imageURI) {
     $("#myImg").attr("src", imageURI);
-}
+}*/
 
 function onFail() {
     $("#myImg").attr("src", imageURI);

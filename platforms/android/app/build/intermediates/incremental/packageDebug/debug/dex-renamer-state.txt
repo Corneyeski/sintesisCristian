@@ -1,4 +1,4 @@
-#Sun May 13 22:12:36 CEST 2018
-base.0=C\:\\Users\\alanv\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Tue May 15 12:40:39 CEST 2018
+base.0=C\:\\Users\\jlopez\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

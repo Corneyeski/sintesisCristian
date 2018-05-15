@@ -12,6 +12,8 @@ var app = {
         $("#registro").click(function(){
             register("registro");
         });
+
+        $("#foto").click(evtTakePicture)
     },
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
@@ -30,8 +32,8 @@ function register(whatToDo) {
             type: "POST",
             dataType: "html",
             jsonp: "callback",
-            //url: "http://alansintesis.000webhostapp.com/login.php",
-            url: "http://localhost/sintesisPHP/login.php",
+            url: "http://alansintesis.000webhostapp.com/login.php",
+            //url: "http://localhost/sintesisPHP/login.php",
             data: {
                 do: whatToDo,
                 email: $("#email").val(),
@@ -55,6 +57,29 @@ function register(whatToDo) {
             }
         });
     }
+}
+function evtTakePicture() {
+    navigator.camera.getPicture(takePictureSuccess, onFail, {quality: 100
+        , saveToPhotoAlbum: true
+        ,destinationType: navigator.camera.DestinationType.FILE_URI
+        , sourceType: navigator.camera.PictureSourceType.CAMERA});
+}
+function takePictureSuccess(imageData) {
+    $("#myImg").attr("src", "data:image/jpeg;base64," + imageData);
+}
+
+function evtGetPicture() {
+    navigator.camera.getPicture(getPictureSuccess, onFail, {
+        destinationType: navigator.camera.DestinationType.FILE_URI
+        , sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+    });
+}
+function getPictureSuccess(imageURI) {
+    $("#myImg").attr("src", imageURI);
+}
+
+function onFail() {
+    $("#myImg").attr("src", imageURI);
 }
 
 app.initialize();

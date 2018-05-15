@@ -15,7 +15,7 @@
         <script src="js/Login.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row" id="loginWindow">
                 <div class="row">
                     <input id="email" name="email" placeholder="email">
@@ -28,20 +28,55 @@
                     Registro completo
                 </div>
             </div>
-            <div class="row" id="fotos">
+
+
+            <div class="row" id="afterLogin">
+
+
+                <!--TODO HACER FOTO -->
                 <div class="row">
-                    <div class="col">
-                        <input>
+                    <div class="btn btn-block btn-danger" id="foto">FOTO</div>
+                </div>
+
+                <!--TODO SUBIR FOTO -->
+                <div class="row" id="fotos">
+                    <div class="row">
+                        <div class="col">
+                            Nombre:<input id="namePic">
+                        </div>
+                        <div class="col">
+                            <!--LOS ESPACIOS MARCAN QUE ES OTRO TAG -->
+                            tags: <input id="tagsPic">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <img class="row" id="myImg" src="" style="width: 100px; height: 100px">
                     </div>
                     <div class="col">
-                        <div class="btn btn-block btn-danger" id="foto">FOTO</div>
-                    </div>
-                    <div class="col">
-                        <div class="btn btn-block btn-login">MIS FOTOS</div>
+                        <div class="btn btn-block btn-login">Guardar</div>
+                        <div class="btn btn-block btn-login">Descartar</div>
                     </div>
                 </div>
-                <img class="row" id="myImg" src="">
+
+                <br>
+
+                <!--TODO BUSQUEDA POR TAGS -->
+                <div class="row" id="searchByTag">
+                    <input id="findTags">
+                </div>
+
+                <!--TODO MIS FOTOS -->
+                <div class="row">
+                    <div class="row">
+                        <div class="btn btn-block btn-login">MIS FOTOS</div>
+                    </div>
+                    <div class="row" id="misFotos">
+
+                    </div>
+                </div>
+
             </div>
+
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>

@@ -1,4 +1,6 @@
 
+var imgSrc = ""
+
 var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -15,7 +17,9 @@ var app = {
             register("registro");
         });
 
-        $("#foto").click(evtTakePicture)
+        $("#foto").click(evtTakePicture);
+        $("#guardarPic").click(savePic);
+        $("#descartarPic").click(discardPic);
     },
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
@@ -69,6 +73,7 @@ function evtTakePicture() {
 function takePictureSuccess(imageData) {
     $("#myImg").attr("src", imageData);
     $("#fotos").show();
+    imgSrc = imageData
 
     //TODO CODIGO PARA SUBIRLA FUNCIONA
     /*var options = new FileUploadOptions();
@@ -89,29 +94,41 @@ function takePictureSuccess(imageData) {
 
 function win(r) {
     console.log("alta correcta..")
-    /*console.log("Code = " + r.responseCode.toString()+"\n");
-    console.log("Response = " + r.response.toString()+"\n");
-    console.log("Sent = " + r.bytesSent.toString()+"\n");
-    alert("Code Slayer!!!");*/
+    console.log(r)
 }
 
 function fail(error) {
     alert("An error has occurred: Code = " + error.code);
 }
 
-/*
-function evtGetPicture() {
-    navigator.camera.getPicture(getPictureSuccess, onFail, {
-        destinationType: navigator.camera.DestinationType.FILE_URI
-        , sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
-    });
-}
-function getPictureSuccess(imageURI) {
-    $("#myImg").attr("src", imageURI);
-}*/
-
 function onFail() {
     $("#myImg").attr("src", imageURI);
+}
+
+function savePic(){
+    if($("#namePic").val() != "" && $("#tagsPic").val() != "") {
+        options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = imgSrc.substr(imgSrc.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+
+        var params = new Object();
+        params.value1 = $("#namePic").val();
+        params.value2 = $("#tagsPic").val();
+
+        options.params = params;
+        options.chunkedMode = false;
+
+        var ft = new FileTransfer();
+        ft.upload(imgSrc, "http://alansintesis.000webhostapp.com/foto.php", win, fail, options);
+    }else{
+        alert("Tienes que introducir un nombre y un tag!")
+    }
+}
+
+function discardPic(){
+    $("#myImg").attr("src","");
+    $("#fotos").hide();
 }
 
 app.initialize();

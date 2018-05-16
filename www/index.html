@@ -11,38 +11,38 @@
         <link rel="stylesheet" href="bootstrap/css/bootstrap-grid.css">
         <link rel="stylesheet" href="bootstrap/css/bootstrap-reboot.css">
         <script src="bootstrap/js/bootstrap.bundle.js"></script>
-        <link rel="stylesheet" href="css/Login.css">
-        <script src="js/Login.js"></script>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row" id="loginWindow">
-                <div class="row">
-                    <input id="email" name="email" placeholder="email">
-                    <input id="password" name="password" placeholder="password">
-                </div>
-                <div class="btn btn-block btn-login" id="login">LOGIN</div>
-                <div class="btn btn-block btn-dark" id="registro">REGISTRO</div>
+        <div class="container">
 
-                <div class="alert alert-success" role="alert" id="registroAlert">
-                    Registro completo
-                </div>
+            <div class="col-12" id="loginWindow">
+                    <div class="row">
+                        <input id="email" name="email" placeholder="email">
+                        <input id="password" name="password" placeholder="password">
+                    </div>
+                    <div class="btn btn-block btn-info" id="login">LOGIN</div>
+                    <div class="btn btn-block btn-dark" id="registro">REGISTRO</div>
+
+                    <div class="alert alert-success" role="alert" id="registroAlert">
+                        Registro completo
+                    </div>
             </div>
 
 
-            <div class="row" id="afterLogin">
+            <div class="col-12" id="afterLogin">
 
 
                 <!--TODO HACER FOTO -->
-                <div class="row">
+                <div class="col-12">
                     <div class="btn btn-block btn-danger" id="foto">FOTO</div>
                 </div>
 
                 <!--TODO SUBIR FOTO -->
-                <div class="row" id="fotos">
+                <div class="col-12" id="fotos">
                     <div class="row">
                         <div class="col">
                             Nombre:<input id="namePic">
+
                         </div>
                         <div class="col">
                             <!--LOS ESPACIOS MARCAN QUE ES OTRO TAG -->
@@ -50,25 +50,29 @@
                         </div>
                     </div>
                     <div class="row">
-                        <img class="row" id="myImg" src="" style="width: 100px; height: 100px">
+                        <div class="col-3"></div>
+                        <div class="col-6" style="text-align: center">
+                            <img id="myImg" src="" style="width: 100%; height: 100%">
+                        </div>
+                        <div class="col-3"></div>
                     </div>
                     <div class="col">
-                        <div class="btn btn-block btn-login">Guardar</div>
-                        <div class="btn btn-block btn-login">Descartar</div>
+                        <div class="btn btn-block btn-info" id="guardarPic">Guardar</div>
+                        <div class="btn btn-block btn-info" id="descartarPic">Descartar</div>
                     </div>
                 </div>
 
                 <br>
 
                 <!--TODO BUSQUEDA POR TAGS -->
-                <div class="row" id="searchByTag">
-                    <input id="findTags">
+                <div class="col-12" id="searchByTag">
+                    <input id="findTags" placeholder="search by tags">
                 </div>
 
                 <!--TODO MIS FOTOS -->
-                <div class="row">
+                <div class="col-12">
                     <div class="row">
-                        <div class="btn btn-block btn-login">MIS FOTOS</div>
+                        <div class="btn btn-block btn-info">MIS FOTOS</div>
                     </div>
                     <div class="row" id="misFotos">
 

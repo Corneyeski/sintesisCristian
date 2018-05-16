@@ -122,3 +122,6 @@ input {
     transition: all 0.1s linear;
     border-radius: 10%;
 }
+.row {
+    display: block;
+}

@@ -1,4 +1,4 @@
-#Tue May 15 12:40:39 CEST 2018
+#Wed May 16 10:06:39 CEST 2018
 base.0=C\:\\Users\\jlopez\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex

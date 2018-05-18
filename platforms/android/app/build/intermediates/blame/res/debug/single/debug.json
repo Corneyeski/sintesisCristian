@@ -12,12 +12,12 @@
         "source": "C:\\Users\\alanv\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\src\\main\\res\\drawable-land-ldpi\\screen.png"
     },
     {
-        "merged": "C:\\Users\\alanv\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-hdpi_screen.png.flat",
-        "source": "C:\\Users\\alanv\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\src\\main\\res\\drawable-port-hdpi\\screen.png"
-    },
-    {
         "merged": "C:\\Users\\jlopez\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-ldpi_screen.png.flat",
         "source": "C:\\Users\\jlopez\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\src\\main\\res\\drawable-port-ldpi\\screen.png"
+    },
+    {
+        "merged": "C:\\Users\\alanv\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-hdpi_screen.png.flat",
+        "source": "C:\\Users\\alanv\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\src\\main\\res\\drawable-port-hdpi\\screen.png"
     },
     {
         "merged": "C:\\Users\\alanv\\WebstormProjects\\sintesisCristian\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_icon.png.flat",

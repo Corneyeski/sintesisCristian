@@ -1,5 +1,6 @@
 
-var imgSrc = ""
+var imgSrc = "";
+var myPics = false;
 
 var app = {
     initialize: function() {
@@ -9,6 +10,7 @@ var app = {
         $("#registroAlert").hide();
         $("#fotos").hide();
         $("#misFotos").hide();
+        $("#searchByTag").hide();
 
         $("#login").click(function(){
             register("login");
@@ -20,6 +22,8 @@ var app = {
         $("#foto").click(evtTakePicture);
         $("#guardarPic").click(savePic);
         $("#descartarPic").click(discardPic);
+        $("#callMisFotos").click(mypicturesShowHide);
+        $("#search").click(findByTags);
     },
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
@@ -74,22 +78,6 @@ function takePictureSuccess(imageData) {
     $("#myImg").attr("src", imageData);
     $("#fotos").show();
     imgSrc = imageData
-
-    //TODO CODIGO PARA SUBIRLA FUNCIONA
-    /*var options = new FileUploadOptions();
-    options.fileKey="file";
-    options.fileName=imageData.substr(imageData.lastIndexOf('/')+1);
-    options.mimeType="image/jpeg";
-
-    var params = new Object();
-    params.value1 = "test";
-    params.value2 = "param";
-
-    options.params = params;
-    options.chunkedMode = false;
-
-    var ft = new FileTransfer();
-    ft.upload(imageData, "http://alansintesis.000webhostapp.com/foto.php", win, fail, options);*/
 }
 
 function win(r) {
@@ -106,7 +94,11 @@ function onFail() {
 }
 
 function savePic(){
+
     if($("#namePic").val() != "" && $("#tagsPic").val() != "") {
+
+        myPics = false;
+
         options = new FileUploadOptions();
         options.fileKey = "file";
         options.fileName = imgSrc.substr(imgSrc.lastIndexOf('/') + 1);
@@ -115,6 +107,7 @@ function savePic(){
         var params = new Object();
         params.value1 = $("#namePic").val();
         params.value2 = $("#tagsPic").val();
+        params.do = "new";
 
         options.params = params;
         options.chunkedMode = false;
@@ -129,6 +122,129 @@ function savePic(){
 function discardPic(){
     $("#myImg").attr("src","");
     $("#fotos").hide();
+}
+
+function mypicturesShowHide(){
+    if($("#misFotos").is(":visible") == false){
+        if(myPics == false){
+            getMyPictures();
+        }else{
+            $("#misFotos").show();
+        }
+    }else{
+        $("#misFotos").hide();
+    }
+}
+
+function getMyPictures(){
+    myPics = true;
+
+    $.ajax({
+        type: "POST",
+        dataType: "html",
+        jsonp: "callback",
+        url: "http://alansintesis.000webhostapp.com/foto.php",
+        //url: "http://localhost/sintesisPHP/login.php",
+        data: {
+            do: "my"
+        },
+        beforeSend: function () {
+            console.log("SOLICITUD DE MIS FOTOS")
+        },
+        success: function (respJSON) {
+            console.log(respJSON);
+
+            var fotos = JSON.parse(respJSON);
+
+            console.log(fotos);
+
+            for (var i in fotos) {
+
+                console.log(fotos[i])
+
+                var del = $("<div class='btn btn-danger' title='" + fotos[i].id + "'>ELIMINAR</div>");
+                del.click(delFoto);
+
+                var dg = $("<div class='row'></div>")
+
+                var pic = $("<div class='col-6'>" +
+                    "<img style='width: 100%; height: 100%' title='" + fotos[i].nombre + "' src='" + fotos[i].url + "'>" +
+                    "</div>");
+                var pic2 = $("<div class='col-6'>" + fotos[i].tags + "</div>");
+                pic2.append(del)
+
+                dg.append(pic, pic2);
+
+                //$("#misFotos").append(del);
+                $("#misFotos").append(dg);
+            }
+            $("#misFotos").show();
+        }
+    });
+}
+
+function findByTags(){
+    $.ajax({
+        type: "POST",
+        dataType: "html",
+        jsonp: "callback",
+        url: "http://alansintesis.000webhostapp.com/foto.php",
+        //url: "http://localhost/sintesisPHP/login.php",
+        data: {
+            do: "tags",
+            search: $("#findTags").val()
+        },
+        beforeSend: function () {
+            console.log("SOLICITUD DE FOTOS POR TAGS")
+        },
+        success: function (respJSON) {
+            console.log(respJSON);
+
+            if (respJSON != "empty") {
+
+                var fotos = JSON.parse(respJSON);
+
+                console.log(fotos);
+
+                for (var i in fotos) {
+
+                    var pic = "<div class='col-6'>" +
+                        "<img style='width: 100%; height: 100%' title='" + fotos[i].nombre + "' src='" + fotos[i].url + "'>" +
+                        "</div><br>" + fotos[i].tags;
+
+                    $("#searchByTag").append(pic);
+                }
+                $("#searchByTag").show();
+            }
+        }
+    });
+}
+
+function delFoto(){
+    console.log("entra")
+
+    var id = this.getAttribute("title");
+
+    console.log(id);
+
+    $(this).parent("div").parent("div").remove()
+
+    $.ajax({
+        type: "POST",
+        dataType: "html",
+        jsonp: "callback",
+        url: "http://alansintesis.000webhostapp.com/foto.php",
+        data: {
+            do: "delete",
+            id: id
+        },
+        beforeSend: function () {
+            console.log("SOLICITUD DE BORRAR FOTO")
+        },
+        success: function (respJSON) {
+            console.log("deleted")
+        }
+    });
 }
 
 app.initialize();

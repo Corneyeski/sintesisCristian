@@ -38,7 +38,8 @@ if($_POST['do'] == "new"){
               "id" => $row["id"],
               "url" => $row["url"],
               "tags" => $row["tag"],
-              "nombre" => $row["nombre"]
+              "nombre" => $row["nombre"],
+              "puntos" => $row["puntos"]
             ];
 
             array_push($results, $foto);
@@ -62,7 +63,8 @@ if($_POST['do'] == "new"){
             $foto = [
               "url" => $row["url"],
               "tags" => $row["tag"],
-              "nombre" => $row["nombre"]
+              "nombre" => $row["nombre"],
+              "puntos" => $row["puntos"]
             ];
             array_push($results, $foto);
         }
@@ -79,3 +81,6 @@ if($_POST['do'] == "new"){
 
 }
 mysqli_close($con);
+
+
+//sumar restas UPDATE foto SET puntos = puntos + 1 WHERE id = 23

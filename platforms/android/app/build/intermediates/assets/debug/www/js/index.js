@@ -170,7 +170,7 @@ function getMyPictures(){
                 var pic = $("<div class='col-6'>" +
                     "<img style='width: 100%; height: 100%' title='" + fotos[i].nombre + "' src='" + fotos[i].url + "'>" +
                     "</div>");
-                var pic2 = $("<div class='col-6'>" + fotos[i].tags + "</div>");
+                var pic2 = $("<div class='col-6'>" + fotos[i].tags + "<br>puntos: " + fotos[i].puntos + "</div>");
                 pic2.append(del)
 
                 dg.append(pic, pic2);
@@ -208,11 +208,26 @@ function findByTags(){
 
                 for (var i in fotos) {
 
-                    var pic = "<div class='col-6'>" +
-                        "<img style='width: 100%; height: 100%' title='" + fotos[i].nombre + "' src='" + fotos[i].url + "'>" +
-                        "</div><br>" + fotos[i].tags;
+                    var all = $("<div class='row'></div>")
 
-                    $("#searchByTag").append(pic);
+                    var b0 = $("<div class='btn btn-info' title='-1'>-1</div>");
+                    b0.click(sumaRest);
+                    var b1 = $("<div class='btn btn-danger' title='0'>0</div>");
+                    b0.click(sumaRest);
+                    var b2 = $("<div class='btn btn-warning' title='1'>+1</div>");
+                    b0.click(sumaRest);
+
+                    var pic = $("<div class='col-6'>" +
+                        "<img style='width: 100%; height: 100%' title='" + fotos[i].nombre + "' src='" + fotos[i].url + "'>" +
+                        "</div>");
+
+                    var pic2 = $("<div class='col-6'><div class='row'>" + fotos[i].tags + "</div></div>")
+
+                    pic2.append(b0,b1,b2);
+
+                    all.append(pic,pic2)
+
+                    $("#searchByTag").append(all);
                 }
                 $("#searchByTag").show();
             }
@@ -245,6 +260,10 @@ function delFoto(){
             console.log("deleted")
         }
     });
+}
+
+function sumaRest(){
+
 }
 
 app.initialize();
